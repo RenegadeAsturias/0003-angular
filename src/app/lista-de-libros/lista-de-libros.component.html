@@ -1,10 +1,17 @@
 <div class="container">
 
+	<br/><div>Listado de libros disponibles...</div><br/>
+
     <div *ngIf="cargando"><br/>CARGANDO...</div>
 
     <ul>
 		<li *ngFor="let libro of libros">
-			<a	[routerLink]="['/detalles', libro.id]"> {{libro.title}} </a> 
+			<a  [ngStyle]="{'cursor':'pointer'}"
+				(click)="verDetalleLibro(unLibro,botonComprar)" #unLibro>{{libro.title}}
+			</a>&nbsp;
+			<a  [ngStyle]="{'cursor':'pointer'}"
+				[routerLink]="['/detalle', libro.id]">Ver detalle
+			</a>
 		</li>
 	</ul>
 	
@@ -13,6 +20,8 @@
 	<div class="alert alert-warning" *ngIf="errorHttp">
 		No se puede mostrar la lista.
 	</div>
+
+	<input type="button" disabled value="No puedes comprar aún" #botonComprar/>
 	
 </div>
 
